@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 import matplotlib.pyplot as plt
-from google.colab.patches import cv2_imshow
+
 
 def Otsu(image, T1, T2):
   threshold = []
@@ -57,4 +57,4 @@ def Otsu(image, T1, T2):
               otsu[i, j] = 255
           else:
               otsu[i, j] = 0
-  return cv2_imshow(otsu)
+  return otsu
