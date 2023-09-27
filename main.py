@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 from bersem import bernsen
 from otsu import Otsu
+from globalUm import umbralizacion_global
 import matplotlib.pyplot as plt
 
 celula = cv2.imread("image-cell.png", cv2.IMREAD_GRAYSCALE)
@@ -16,6 +17,10 @@ otsu1 = Otsu(celula, 100, 115)
 otsu2 = Otsu(bacteria, 110, 130)
 otsu3 = Otsu(zebra, 120, 170)
 
+global1 = umbralizacion_global("image-cell.png", umbral_inicial=150, delta=1)
+global2 = umbralizacion_global("person_bacteria.jpeg", umbral_inicial=170, delta=1)
+global3 = umbralizacion_global("zebra.jpg", umbral_inicial=170, delta=1)
+
 plt.figure(figsize=(15, 5))
 
 # imagenes procesadas celula
@@ -24,7 +29,7 @@ plt.imshow(celula)
 plt.title('original')
 
 plt.subplot(342)  
-plt.imshow(celula)
+plt.imshow(global1, cmap="gray")
 plt.title('Global')
 
 plt.subplot(343)  
@@ -41,7 +46,7 @@ plt.imshow(bacteria)
 plt.title('original')
 
 plt.subplot(346)  
-plt.imshow(bacteria)
+plt.imshow(global2, cmap="gray")
 plt.title('Global')
 
 plt.subplot(347)  
@@ -58,7 +63,7 @@ plt.imshow(zebra)
 plt.title('original')
 
 plt.subplot(3,4 ,10)  
-plt.imshow(zebra)
+plt.imshow(global3 , cmap="gray")
 plt.title('Global')
 
 plt.subplot(3,4,11)  
